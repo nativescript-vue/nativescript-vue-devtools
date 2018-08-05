@@ -1,0 +1,29 @@
+{
+  "name": "nativescript-vue-devtools",
+  "version": "0.0.1",
+  "description": "A NativeScript-Vue plugin for connecting to the standalone vue-devtools",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nativescript-vue/nativescript-vue-devtools.git"
+  },
+  "keywords": ["nativescript", "nativescript-vue", "devtools", "vue", "vuejs"],
+  "author": "Igor Randjelovic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nativescript-vue/nativescript-vue-devtools/issues"
+  },
+  "homepage": "https://github.com/nativescript-vue/nativescript-vue-devtools#readme",
+  "peerDependencies": {
+    "nativescript-toast": "*",
+    "nativescript-socket.io": "*",
+    "tns-core-modules": "*",
+    "@vue/devtools": "*"
+  }
+}
