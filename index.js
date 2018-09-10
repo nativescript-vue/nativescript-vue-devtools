@@ -3,10 +3,15 @@ const {isAndroid} = require('tns-core-modules/platform')
 
 /**
  * Returns the correct address for the host machine when running on emulator
+ * @param host
  * @param port
  * @returns {string}
  */
-function getServerIpAddress(port) {
+function getServerIpAddress(host, port) {
+  if (host) {
+    return `${host}:${port}`
+  }
+
   if (isAndroid) {
     const FINGERPRINT = android.os.Build.FINGERPRINT
     if (FINGERPRINT.includes("vbox")) {
@@ -22,15 +27,15 @@ function getServerIpAddress(port) {
   return `localhost:${port}`
 }
 
-module.exports = function install(Vue, options = {debug: false}) {
+module.exports = function install(Vue, options = {debug: false, host: null, port: 8098}) {
   const startApp = Vue.prototype.$start
 
   Vue.prototype.$start = function () {
-    devtools.connect('ws://localhost', 8098, {
+    devtools.connect('ws://localhost', options.port, {
       app: this,
       showToast: (message) => require('nativescript-toast').makeText(message).show(),
       io() {
-        const addr = `http://${getServerIpAddress(8098)}`
+        const addr = `http://${getServerIpAddress(options.host, options.port)}`
         const SocketIO = require('nativescript-socket.io')
         options.debug && SocketIO.enableDebug()
 
