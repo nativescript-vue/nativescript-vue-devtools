@@ -1,6 +1,6 @@
 {
   "name": "nativescript-vue-devtools",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A NativeScript-Vue plugin for connecting to the standalone vue-devtools",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,13 @@
     "type": "git",
     "url": "git+https://github.com/nativescript-vue/nativescript-vue-devtools.git"
   },
-  "keywords": ["nativescript", "nativescript-vue", "devtools", "vue", "vuejs"],
+  "keywords": [
+    "nativescript",
+    "nativescript-vue",
+    "devtools",
+    "vue",
+    "vuejs"
+  ],
   "author": "Igor Randjelovic",
   "license": "MIT",
   "bugs": {
