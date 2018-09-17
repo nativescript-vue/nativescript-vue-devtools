@@ -27,19 +27,19 @@ function getServerIpAddress(host, port) {
   return `localhost:${port}`
 }
 
-module.exports = function install(Vue, options = {debug: false, host: null, port: 8098}) {
+module.exports = function install(Vue, {debug = false, host = null, port = 8098} = {}) {
   const startApp = Vue.prototype.$start
 
   Vue.prototype.$start = function () {
-    devtools.connect('ws://localhost', options.port, {
+    devtools.connect('ws://localhost', port, {
       app: this,
       showToast: (message) => require('nativescript-toast').makeText(message).show(),
       io() {
-        const addr = `http://${getServerIpAddress(options.host, options.port)}`
+        const address = `http://${getServerIpAddress(host, port)}`
         const SocketIO = require('nativescript-socket.io')
-        options.debug && SocketIO.enableDebug()
+        debug && SocketIO.enableDebug()
 
-        return SocketIO.connect(addr)
+        return SocketIO.connect(address)
       }
     })
 
