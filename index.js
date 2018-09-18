@@ -23,27 +23,37 @@ function getServerIpAddress(host, port) {
     }
   }
 
-  // ios or android device use `localhost`
-  return `localhost:${port}`
+  // ios simulator uses localhost
+  return `127.0.0.1:${port}`
 }
 
 module.exports = function install(Vue, {debug = false, host = null, port = 8098} = {}) {
   const startApp = Vue.prototype.$start
 
   Vue.prototype.$start = function () {
-    devtools.connect('ws://localhost', port, {
-      app: this,
-      showToast: (message) => require('nativescript-toast').makeText(message).show(),
-      io() {
-        const address = `http://${getServerIpAddress(host, port)}`
-        const SocketIO = require('nativescript-socket.io')
-        debug && SocketIO.enableDebug()
+    const setupDevtools = () => {
+      devtools.connect('ws://localhost', port, {
+        app: this,
+        showToast: (message) => require('nativescript-toast').makeText(message).show(),
+        io() {
+          const address = `http://${getServerIpAddress(host, port)}`
+          const SocketIO = require('nativescript-socket.io')
+          debug && SocketIO.enableDebug()
+          return SocketIO.connect(address)
+        }
+      })
 
-        return SocketIO.connect(address)
-      }
-    })
+      devtools.init(Vue);
+    }
 
-    devtools.init(Vue);
+    if(isAndroid) {
+      setupDevtools()
+    } else {
+      // on ios we need to delay the call because the socket connection is not established
+      // if called too early in the application startup process
+      // we might need to add a delay to the setTimeout in the future
+      setTimeout(setupDevtools)
+    }
 
     return startApp.call(this)
   }
