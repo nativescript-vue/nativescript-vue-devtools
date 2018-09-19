@@ -1,6 +1,24 @@
 const devtools = require('@vue/devtools');
 const {isAndroid} = require('tns-core-modules/platform')
 
+if (!global.performance) {
+  global.performance = {};
+}
+
+if (!global.performance.now) {
+  const nowOffset = Date.now();
+
+  global.performance.now = function now() {
+    return Date.now() - nowOffset;
+  }
+}
+
+if (!global.requestAnimationFrame) {
+  global.requestAnimationFrame = function raf(cb) {
+    return setTimeout(cb, 1000 / 60)
+  }
+}
+
 /**
  * Returns the correct address for the host machine when running on emulator
  * @param host
@@ -46,7 +64,7 @@ module.exports = function install(Vue, {debug = false, host = null, port = 8098}
       devtools.init(Vue);
     }
 
-    if(isAndroid) {
+    if (isAndroid) {
       setupDevtools()
     } else {
       // on ios we need to delay the call because the socket connection is not established
