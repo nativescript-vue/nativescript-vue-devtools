@@ -28,7 +28,7 @@
   "homepage": "https://github.com/nativescript-vue/nativescript-vue-devtools#readme",
   "peerDependencies": {
     "nativescript-toast": "*",
-    "nativescript-socket.io": "*",
+    "nativescript-socketio": "*",
     "tns-core-modules": "*",
     "@vue/devtools": "*"
   }

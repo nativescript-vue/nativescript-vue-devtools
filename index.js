@@ -55,9 +55,10 @@ module.exports = function install(Vue, {debug = false, host = null, port = 8098}
         showToast: (message) => require('nativescript-toast').makeText(message).show(),
         io() {
           const address = `http://${getServerIpAddress(host, port)}`
-          const SocketIO = require('nativescript-socket.io')
-          debug && SocketIO.enableDebug()
-          return SocketIO.connect(address)
+          const SocketIO = require('nativescript-socketio').SocketIO
+          let socketIO = new SocketIO(address, { debug: debug })
+          socketIO.connect()
+          return socketIO
         }
       })
 
