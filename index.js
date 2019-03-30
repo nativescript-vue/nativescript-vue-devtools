@@ -45,6 +45,16 @@ function getServerIpAddress(host, port) {
   return `127.0.0.1:${port}`
 }
 
+// Wrap the toast message in a try, devtool still work without toaster
+const showToast = (message) => {
+  try {
+    const Toasty = require('nativescript-toasty').Toasty;
+    new Toasty(message).show();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = function install(Vue, {debug = false, host = null, port = 8098} = {}) {
   const startApp = Vue.prototype.$start
 
@@ -52,12 +62,13 @@ module.exports = function install(Vue, {debug = false, host = null, port = 8098}
     const setupDevtools = () => {
       devtools.connect('ws://localhost', port, {
         app: this,
-        showToast: (message) => require('nativescript-toast').makeText(message).show(),
+        showToast,
         io() {
           const address = `http://${getServerIpAddress(host, port)}`
-          const SocketIO = require('nativescript-socket.io')
-          debug && SocketIO.enableDebug()
-          return SocketIO.connect(address)
+          const SocketIO = require('nativescript-socketio').SocketIO
+          let socketIO = new SocketIO(address, { debug: debug })
+          socketIO.connect()
+          return socketIO
         }
       })
 

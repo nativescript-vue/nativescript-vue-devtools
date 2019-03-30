@@ -1,6 +1,6 @@
 {
   "name": "nativescript-vue-devtools",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A NativeScript-Vue plugin for connecting to the standalone vue-devtools",
   "main": "index.js",
   "scripts": {
@@ -27,8 +27,8 @@
   },
   "homepage": "https://github.com/nativescript-vue/nativescript-vue-devtools#readme",
   "peerDependencies": {
-    "nativescript-toast": "*",
-    "nativescript-socket.io": "*",
+    "nativescript-toasty": "*",
+    "nativescript-socketio": "*",
     "tns-core-modules": "*",
     "@vue/devtools": "*"
   }
