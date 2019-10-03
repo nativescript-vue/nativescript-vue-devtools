@@ -3,6 +3,11 @@
   "version": "1.2.0",
   "description": "A NativeScript-Vue plugin for connecting to the standalone vue-devtools",
   "main": "index.js",
+  "nativescript": {
+    "plugin": {
+      "vue": "true"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
