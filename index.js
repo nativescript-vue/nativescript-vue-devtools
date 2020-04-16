@@ -19,6 +19,13 @@ if (!global.requestAnimationFrame) {
   }
 }
 
+// fixes a crash when running VueDevtools
+if (!global.HTMLElement) {
+  global.HTMLElement = function() {
+    return false
+  }
+}
+
 /**
  * Returns the correct address for the host machine when running on emulator
  * @param host
