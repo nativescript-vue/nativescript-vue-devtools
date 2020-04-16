@@ -49,7 +49,11 @@ function getServerIpAddress(host, port) {
 const showToast = (message) => {
   try {
     const Toasty = require('nativescript-toasty').Toasty;
-    new Toasty(message).show();
+    new Toasty({
+      text: message,
+      backgroundColor: '#53ba82',
+      yAxisOffset: 50
+    }).show();
   } catch (error) {
     console.log(error);
   }
