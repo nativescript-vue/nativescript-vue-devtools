@@ -1,6 +1,6 @@
 {
   "name": "nativescript-vue-devtools",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "A NativeScript-Vue plugin for connecting to the standalone vue-devtools",
   "main": "index.js",
   "nativescript": {
