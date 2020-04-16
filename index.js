@@ -67,6 +67,16 @@ const showToast = (message) => {
 }
 
 module.exports = function install(Vue, {debug = false, host = null, port = 8098} = {}) {
+  // ensure all dependencies are available and bail out if anything is missing
+  try {
+    require.resolve('nativescript-socketio')
+    require.resolve('nativescript-toasty')
+    require.resolve('@vue/devtools')
+  } catch (e) {
+    console.log('[nativescript-vue-devtools] skipping install due to missing dependencies.\n\n', e, '\n\n')
+    return
+  }
+
   const startApp = Vue.prototype.$start
 
   Vue.prototype.$start = function () {
@@ -84,6 +94,11 @@ module.exports = function install(Vue, {debug = false, host = null, port = 8098}
             return socketIO
           } catch (error) {
             console.log(error)
+            // prevent crashing by returning a noop stub
+            return {
+              on() {},
+              emit() {}
+            }
           }
         }
       })
