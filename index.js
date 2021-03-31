@@ -1,5 +1,5 @@
 const devtools = require('@vue/devtools');
-const {isAndroid} = require('tns-core-modules/platform')
+const {isAndroid} = require('@nativescript/core')
 
 if (!global.performance) {
   global.performance = {};
