@@ -2,6 +2,7 @@ import devtools from "@vue/devtools";
 import { isAndroid } from "@nativescript/core";
 import * as toasty from "@triniwiz/nativescript-toasty";
 import * as nsSocketIo from "@triniwiz/nativescript-socketio";
+import type { VueConstructor } from "vue";
 
 if (!global.performance) {
 	(global.performance as any) = {};
@@ -67,13 +68,11 @@ const showToast = (message: string): void => {
 };
 
 const install = (
-	Vue: any,
+	Vue: VueConstructor,
 	{ debug = false, host = null, port = 8098 } = {}
 ): void => {
 	// ensure all dependencies are available and bail out if anything is missing
 	try {
-		require.resolve("@triniwiz/nativescript-socketio");
-		require.resolve("@triniwiz/nativescript-toasty");
 		require.resolve("@vue/devtools");
 	} catch (e) {
 		console.log(
@@ -89,7 +88,7 @@ const install = (
 	Vue.prototype.$start = function () {
 		const setupDevtools = () => {
 			const options = {
-				app: Vue,
+				app: this,
 				showToast,
 				io() {
 					try {
@@ -101,7 +100,6 @@ const install = (
 						// this line causes a crash. the socketio plugin needs to be updated to nativescript version 8.0
 						let socketIO = new SocketIO(address, { debug: debug });
 						socketIO.connect();
-
 						return socketIO;
 					} catch (error) {
 						console.log(error);
@@ -113,8 +111,10 @@ const install = (
 					}
 				},
 			};
+
+			// vue-dev-tools type files are outdated so this is to get around that
 			devtools.connect("ws://localhost", port, options);
-			devtools.init(Vue);
+			(devtools as any).init(Vue);
 		};
 
 		if (isAndroid) {
