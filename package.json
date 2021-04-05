@@ -43,7 +43,9 @@
 		"@triniwiz/nativescript-toasty": "^4.1.3"
 	},
 	"devDependencies": {
+		"@nativescript/core": "^8.0.0",
 		"@nativescript/types": "^8.0.0",
+		"@vue/devtools": "^6.0.0-beta.6",
 		"typescript": "^4.2.3"
 	}
 }

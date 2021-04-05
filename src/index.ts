@@ -1,7 +1,7 @@
 import devtools from "@vue/devtools";
 import { isAndroid } from "@nativescript/core";
-import toasty from "@triniwiz/nativescript-toasty";
-import nsSocketIo from "@triniwiz/nativescript-socketio";
+import * as toasty from "@triniwiz/nativescript-toasty";
+import * as nsSocketIo from "@triniwiz/nativescript-socketio";
 
 if (!global.performance) {
 	(global.performance as any) = {};
@@ -30,11 +30,8 @@ if (!global.HTMLElement) {
 
 /**
  * Returns the correct address for the host machine when running on emulator
- * @param host
- * @param port
- * @returns {string}
  */
-function getServerIpAddress(host: string, port: number) {
+const getServerIpAddress = (host: string | null, port: number): string => {
 	if (host) {
 		return `${host}:${port}`;
 	}
@@ -53,10 +50,10 @@ function getServerIpAddress(host: string, port: number) {
 
 	// ios simulator uses localhost
 	return `127.0.0.1:${port}`;
-}
+};
 
 // Wrap the toast message in a try, devtool still work without toaster
-const showToast = (message: string) => {
+const showToast = (message: string): void => {
 	try {
 		const { Toasty } = toasty;
 		new Toasty({
@@ -69,11 +66,14 @@ const showToast = (message: string) => {
 	}
 };
 
-const install = (Vue: any, { debug = false, host = "", port = 8098 } = {}) => {
+const install = (
+	Vue: any,
+	{ debug = false, host = null, port = 8098 } = {}
+): void => {
 	// ensure all dependencies are available and bail out if anything is missing
 	try {
-		require.resolve("nativescript-socketio");
-		require.resolve("nativescript-toasty");
+		require.resolve("@triniwiz/nativescript-socketio");
+		require.resolve("@triniwiz/nativescript-toasty");
 		require.resolve("@vue/devtools");
 	} catch (e) {
 		console.log(
@@ -88,8 +88,8 @@ const install = (Vue: any, { debug = false, host = "", port = 8098 } = {}) => {
 
 	Vue.prototype.$start = function () {
 		const setupDevtools = () => {
-			(devtools as any).connect("ws://localhost", port, {
-				app: this,
+			const options = {
+				app: Vue,
 				showToast,
 				io() {
 					try {
@@ -98,6 +98,7 @@ const install = (Vue: any, { debug = false, host = "", port = 8098 } = {}) => {
 							host,
 							port
 						)}`;
+						// this line causes a crash. the socketio plugin needs to be updated to nativescript version 8.0
 						let socketIO = new SocketIO(address, { debug: debug });
 						socketIO.connect();
 
@@ -111,9 +112,9 @@ const install = (Vue: any, { debug = false, host = "", port = 8098 } = {}) => {
 						};
 					}
 				},
-			});
-
-			(devtools as any).init(Vue);
+			};
+			devtools.connect("ws://localhost", port, options);
+			devtools.init(Vue);
 		};
 
 		if (isAndroid) {
@@ -129,4 +130,6 @@ const install = (Vue: any, { debug = false, host = "", port = 8098 } = {}) => {
 	};
 };
 
-export default install;
+export default {
+	install,
+};
