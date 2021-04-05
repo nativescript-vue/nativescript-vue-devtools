@@ -113,7 +113,7 @@ const install = (
 			};
 
 			// vue-dev-tools type files are outdated so this is to get around that
-			devtools.connect("ws://localhost", port, options);
+			(devtools as any).connect("ws://localhost", port, options);
 			(devtools as any).init(Vue);
 		};
 
