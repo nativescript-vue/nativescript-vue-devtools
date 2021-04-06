@@ -11,7 +11,11 @@
         "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
         "outDir": "./dist",
         "baseUrl": "./src",
-        "lib": ["es2017", "DOM"]
+        "lib": ["es2017", "DOM"],
+        "typeRoots": [
+            "./node_modules/@types",
+            "./node_modules/@nativescript/types"
+        ]
     },
     "include": ["./src/**/*"]
 }
