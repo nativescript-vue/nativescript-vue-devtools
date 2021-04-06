@@ -1,52 +1,52 @@
 {
-	"name": "nativescript-vue-devtools",
-	"version": "1.5.0",
-	"description": "A NativeScript-Vue plugin for connecting to the standalone vue-devtools",
-	"main": "dist/index.js",
-	"nativescript": {
-		"plugin": {
-			"vue": "true"
-		}
-	},
-	"scripts": {
-		"build": "tsc",
-		"prepublish": "npm run build"
-	},
-	"files": [
-		"dist"
-	],
-	"typings": "dist/index.d.ts",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/nativescript-vue/nativescript-vue-devtools.git"
-	},
-	"keywords": [
-		"nativescript",
-		"nativescript-vue",
-		"devtools",
-		"vue",
-		"vuejs"
-	],
-	"author": "Igor Randjelovic",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/nativescript-vue/nativescript-vue-devtools/issues"
-	},
-	"homepage": "https://github.com/nativescript-vue/nativescript-vue-devtools#readme",
-	"peerDependencies": {
-		"@nativescript/core": "*",
-		"@vue/devtools": "*",
-		"vue": "*"
-	},
-	"dependencies": {
-		"@triniwiz/nativescript-socketio": "^4.0.1",
-		"@triniwiz/nativescript-toasty": "^4.1.3"
-	},
-	"devDependencies": {
-		"@nativescript/core": "^8.0.0",
-		"@types/node": "^14.14.37",
-		"@vue/devtools": "^5.3.4",
-		"typescript": "^4.2.3",
-		"vue": "^2.6.12"
-	}
+    "name": "nativescript-vue-devtools",
+    "version": "1.5.0",
+    "description": "A NativeScript-Vue plugin for connecting to the standalone vue-devtools",
+    "main": "dist/index.js",
+    "nativescript": {
+        "plugin": {
+            "vue": "true"
+        }
+    },
+    "scripts": {
+        "build": "tsc",
+        "prepublish": "npm run build"
+    },
+    "files": [
+        "dist"
+    ],
+    "typings": "dist/index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nativescript-vue/nativescript-vue-devtools.git"
+    },
+    "keywords": [
+        "nativescript",
+        "nativescript-vue",
+        "devtools",
+        "vue",
+        "vuejs"
+    ],
+    "author": "Igor Randjelovic",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/nativescript-vue/nativescript-vue-devtools/issues"
+    },
+    "homepage": "https://github.com/nativescript-vue/nativescript-vue-devtools#readme",
+    "peerDependencies": {
+        "@nativescript/core": "*",
+        "@vue/devtools": "*",
+        "vue": "*"
+    },
+    "dependencies": {
+        "@triniwiz/nativescript-socketio": "^4.0.1",
+        "@triniwiz/nativescript-toasty": "^4.1.3"
+    },
+    "devDependencies": {
+        "@nativescript/core": "^8.0.0",
+        "@types/node": "^14.14.37",
+        "@vue/devtools": "^5.3.4",
+        "typescript": "^4.2.3",
+        "vue": "^2.6.12"
+    }
 }
