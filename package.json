@@ -1,6 +1,6 @@
 {
     "name": "nativescript-vue-devtools",
-    "version": "1.5.0",
+    "version": "1.5.1",
     "description": "A NativeScript-Vue plugin for connecting to the standalone vue-devtools",
     "main": "dist/index.js",
     "nativescript": {
@@ -10,7 +10,7 @@
     },
     "scripts": {
         "build": "tsc",
-        "prepublish": "npm run build"
+        "prepare": "npm run build"
     },
     "files": [
         "dist"
