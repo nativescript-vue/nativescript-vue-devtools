@@ -1,43 +1,54 @@
 {
-  "name": "nativescript-vue-devtools",
-  "version": "1.5.0",
-  "description": "A NativeScript-Vue plugin for connecting to the standalone vue-devtools",
-  "main": "index.js",
-  "nativescript": {
-    "plugin": {
-      "vue": "true"
+    "name": "nativescript-vue-devtools",
+    "version": "1.5.0",
+    "description": "A NativeScript-Vue plugin for connecting to the standalone vue-devtools",
+    "main": "dist/index.js",
+    "nativescript": {
+        "plugin": {
+            "vue": "true"
+        }
+    },
+    "scripts": {
+        "build": "tsc",
+        "prepublish": "npm run build"
+    },
+    "files": [
+        "dist"
+    ],
+    "typings": "dist/index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nativescript-vue/nativescript-vue-devtools.git"
+    },
+    "keywords": [
+        "nativescript",
+        "nativescript-vue",
+        "devtools",
+        "vue",
+        "vuejs"
+    ],
+    "author": "Igor Randjelovic",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/nativescript-vue/nativescript-vue-devtools/issues"
+    },
+    "homepage": "https://github.com/nativescript-vue/nativescript-vue-devtools#readme",
+    "peerDependencies": {
+        "@nativescript/core": "*",
+        "@vue/devtools": "*",
+        "vue": "*",
+        "@triniwiz/nativescript-socketio": "*",
+        "@triniwiz/nativescript-toasty": "*"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@nativescript/core": "^8.0.0",
+        "@nativescript/types": "^8.0.0",
+        "@triniwiz/nativescript-socketio": "^4.0.1",
+        "@triniwiz/nativescript-toasty": "^4.1.3",
+        "@types/node": "^14.14.37",
+        "@vue/devtools": "^5.3.4",
+        "typescript": "^4.2.3",
+        "vue": "^2.6.12"
     }
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "typings": "types/index.d.ts",
-  "files": [
-    "index.js",
-    "types/index.d.ts"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nativescript-vue/nativescript-vue-devtools.git"
-  },
-  "keywords": [
-    "nativescript",
-    "nativescript-vue",
-    "devtools",
-    "vue",
-    "vuejs"
-  ],
-  "author": "Igor Randjelovic",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/nativescript-vue/nativescript-vue-devtools/issues"
-  },
-  "homepage": "https://github.com/nativescript-vue/nativescript-vue-devtools#readme",
-  "peerDependencies": {
-    "nativescript-toasty": "*",
-    "nativescript-socketio": "*",
-    "@nativescript/core": "*",
-    "@vue/devtools": "*",
-    "vue": "*"
-  }
 }

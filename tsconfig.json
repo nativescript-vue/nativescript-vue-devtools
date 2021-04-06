@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "ES2017",
+        "module": "CommonJS",
+        "sourceMap": true,
+        "moduleResolution": "node",
+        "declaration": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
+        "outDir": "./dist",
+        "baseUrl": "./src",
+        "lib": ["es2017", "DOM"],
+        "typeRoots": [
+            "./node_modules/@types",
+            "./node_modules/@nativescript/types"
+        ]
+    },
+    "include": ["./src/**/*"]
+}
